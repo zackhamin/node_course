@@ -1,3 +1,5 @@
 const fs = require('fs')
 
-fs.writeFile('notes.txt', 'My name is Zack!', () => {})
+fs.writeFileSync('notes.txt', 'My name is Zack!', () => {})
+
+fs.appendFileSync('notes.txt', ' Just adding a note')
