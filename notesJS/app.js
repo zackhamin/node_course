@@ -3,14 +3,22 @@ const yargs = require('yargs')
 
 // const command = process.argv[2]
 
-console.log(process.argv)
-
-
 yargs.command({
     command: 'add',
     describe: 'Add a new note',
-    handler: function () {
-        console.log("New note added")
+    builder: {
+        title: {
+            describe: 'Note title ',
+            type: 'string'
+        },
+        body: {
+            describe: 'body',
+            type: 'string'
+        }
+    },
+    handler: function (argv) {
+        console.log("Title:", argv.title)
+        console.log("Body:", argv.body)
     }
 })
 
@@ -38,7 +46,7 @@ yargs.command({
     }
 })
 
-console.log(yargs.argv)
+yargs.parse()
 
 // if (command === "add") {
 //     console.log('Adding note..')
