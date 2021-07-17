@@ -21,6 +21,23 @@ yargs.command({
         console.log('Removing notes')
     }
 })
+
+yargs.command({
+    command: 'list',
+    describe: 'List all notes',
+    handler: function() {
+        console.log('All notes listed')
+    }
+})
+
+yargs.command({
+    command: 'read',
+    describe: 'Read a note',
+    handler: function() {
+        console.log('Here\'s your note')
+    }
+})
+
 console.log(yargs.argv)
 
 // if (command === "add") {
