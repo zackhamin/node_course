@@ -1,4 +1,4 @@
-const getNotes = require('./notes.js')
+const notes = require('./notes.js')
 const yargs = require('yargs')
 
 // const command = process.argv[2]
@@ -17,8 +17,7 @@ yargs.command({
         }
     },
     handler: function (argv) {
-        console.log("Title:", argv.title)
-        console.log("Body:", argv.body)
+       notes.addNotes(argv.title,argv.body)
     }
 })
 
@@ -47,9 +46,3 @@ yargs.command({
 })
 
 yargs.parse()
-
-// if (command === "add") {
-//     console.log('Adding note..')
-// } else if (command === 'remove'){
-//     console.log('Removing note')
-// }
