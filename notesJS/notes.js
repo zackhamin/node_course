@@ -1,15 +1,15 @@
 const fs = require('fs')
 
-const getNotes = function () {
+const getNotes = () => {
     return 'Your notes...'
 }
 
 const addNotes =  (title,body) => {
     const notes = loadNotes()
-    const duplicateNotes = notes.filter((note) => {
-        return note.title === title
-    })
-    if (duplicateNotes.length === 0) {
+    // const duplicateNotes = notes.filter((note) =>  note.title === title
+    // )
+    const duplicateNote = notes.find((note) => note.title === title)
+    if (!duplicateNote) {
         notes.push({
             title,
             body
@@ -28,13 +28,12 @@ const saveNotes = (notes) => {
 
 const removeNote = (title) => {
     const notes = loadNotes()
-    const notesList = notes.filter((note) => {
-        return note.title !== title
-    })
+    const notesList = notes.filter((note) => note.title !== title
+    )
     saveNotes(notesList)
 }
 
-const loadNotes = function () {
+const loadNotes = () => {
     try{
         const dataBuffer = fs.readFileSync('notes.json')
         const dataJSON = dataBuffer.toString()
@@ -45,4 +44,25 @@ const loadNotes = function () {
     }
 }
 
-module.exports = { getNotes, addNotes, removeNote}
+const listNotes = () => {
+    const notes = loadNotes()
+    return notes.forEach(note => {
+        console.log(note.title)
+    });
+}
+
+const readNotes = (title) => {
+    try {
+        const notes = loadNotes()
+        const noteFound = notes.find((note) => note.title === title)
+        if (noteFound) {
+            console.log(noteFound)
+        } else {
+            console.log("No note found.")
+        }
+    } catch(e){
+        console.log("No note found")
+    }
+}
+
+module.exports = { getNotes, addNotes, removeNote, listNotes, readNotes}
