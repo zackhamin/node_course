@@ -4,9 +4,9 @@ const getNotes = function () {
     return 'Your notes...'
 }
 
-const addNotes = function (title,body) {
+const addNotes =  (title,body) => {
     const notes = loadNotes()
-    const duplicateNotes = notes.filter(function (note) {
+    const duplicateNotes = notes.filter((note) => {
         return note.title === title
     })
     if (duplicateNotes.length === 0) {
@@ -21,14 +21,14 @@ const addNotes = function (title,body) {
     }
 }
 
-const saveNotes = function (notes) {
+const saveNotes = (notes) => {
     const notesJSON = JSON.stringify(notes)
     fs.writeFileSync('notes.json', notesJSON)
 }
 
-const removeNote = function(title) {
+const removeNote = (title) => {
     const notes = loadNotes()
-    const notesList = notes.filter(function (note) {
+    const notesList = notes.filter((note) => {
         return note.title !== title
     })
     saveNotes(notesList)
