@@ -5,6 +5,7 @@ const tokenMapBox = 'pk.eyJ1IjoiemFjay1kZXYiLCJhIjoiY2tyYnR3Z21vNHRjajJ1cWgzMmJ0
 const url = 'http://api.weatherstack.com/current?access_key=eec85e3060c6743049f9ee58abbf936b&query=Rochdale'
 const place = 'Los Angeles'
 const mapURL = `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?access_token=${tokenMapBox}`
+
 request({url:mapURL, json: true}, (error,response) => {
     if (error) {
         console.log("Network error")
