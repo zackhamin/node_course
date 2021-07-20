@@ -10,7 +10,10 @@ const getWeather = (lat,long, callBack) => {
         } else {
             callBack(undefined,{
                 feelsLike: response.body.current.feelslike,
-                temperature: response.body.current.temperature     
+                temperature: response.body.current.temperature,
+                locationName: response.body.location.name,  
+                locationCountry: response.body.location.country, 
+                description: response.body.current.weather_descriptions[0]
     })
     }
 })}
