@@ -6,11 +6,11 @@ const locationInput = process.argv[2]
 if(!locationInput){
     console.log("No location given")
 } else {
-    geoLocation(locationInput, (error, response) => {
+    geoLocation(locationInput, (error, {latitude, longitude}) => {
         if (error) {
          return console.log(error)
         }
-        getWeather(response.latitude,response.longitude,(error, response) => {
+        getWeather(latitude,longitude,(error, response) => {
           if(error){
               return console.log(error)
           }  
