@@ -46,6 +46,22 @@ app.get('/weather', (req, res) =>{
     })
 })
 
+app.get('/help/*',(req,res) => {
+    res.render('404', {
+        title:'404',
+        errorMessage: "404 Help article not found",
+        footer: `Created by ${name}`
+    })
+})
+
+app.get('*',(req,res) => {
+    res.render('404', {
+       title:'404',
+       errorMessage: "404 Page not found",
+       footer: `Created by ${name}`
+    })
+})
+
 app.listen(3000, () => {
     console.log("Listening to you breathe")
 }) 
