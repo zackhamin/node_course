@@ -21,21 +21,21 @@ const name = "Ishaq Amin"
 app.get('',(req,res) => {
     res.render('index', {
         title: 'Weather App',
-        name
+        footer: `Created by ${name}`
     })
 })
 
 app.get('/about',(req,res) => {
     res.render('about', {
         title: "About",
-        name
+        footer: `Created by ${name}`
     })
 })
 
 app.get('/help',(req,res) => {
     res.render('help', {
         title: 'Help',
-        name
+        footer: `Created by ${name}`
     })
 })
 
