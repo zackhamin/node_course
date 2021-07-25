@@ -40,9 +40,16 @@ app.get('/help',(req,res) => {
 })
 
 app.get('/weather', (req, res) =>{
+    const address = req.query.address
+    if (!address) {
+        return res.send({
+            Error: 'Please provide an address'
+        }).status(400)
+    }
     res.send({
         weather: "Sunny",
-        location: "Rochdales"
+        location: "Rochdales",
+        address: address
     })
 })
 
