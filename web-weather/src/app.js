@@ -1,3 +1,6 @@
+const geoLocation = require('../src/utils/geocode')
+const getWeather = require('../src/utils/getTemperature')
+
 const hbs = require('hbs')
 const express = require('express')
 const path = require('path')
@@ -42,16 +45,23 @@ app.get('/help',(req,res) => {
 app.get('/weather', (req, res) =>{
     const address = req.query.address
     if (!address) {
-        return res.send({
-            Error: 'Please provide an address'
-        }).status(400)
-    }
+        return res.send("No Address given ")
+    } else {
+    geoLocation(address, (error, {latitude, longitude}) => {
+        if (error === undefined) {
+         return res.send({error}).status(404)
+        }
+        getWeather(latitude,longitude,(error, response) => {
+          if(error){
+            return res.send({error}).status(404)
+          }  
     res.send({
-        weather: "Sunny",
-        location: "Rochdales",
-        address: address
+        weather: response.temperature,
+        locationName: response.locationName,
+        locationCountry: response.locationCountry,
+        description: response.description
     })
-})
+})})}})
 
 app.get('/help/*',(req,res) => {
     res.render('404', {
