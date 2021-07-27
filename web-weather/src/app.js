@@ -47,8 +47,8 @@ app.get('/weather', (req, res) =>{
     if (!address) {
         return res.send("No Address given ")
     } else {
-    geoLocation(address, (error, {latitude, longitude}) => {
-        if (error === undefined) {
+    geoLocation(address, (error, {latitude, longitude} = {}) => {
+        if (error) {
          return res.send({error}).status(404)
         }
         getWeather(latitude,longitude,(error, response) => {
