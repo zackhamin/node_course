@@ -7,6 +7,8 @@ const path = require('path')
 
 //Define path for express config
 const app = express()
+const port = process.env.PORT || 3000
+
 const publicPath = path.join(__dirname,'../public')
 const viewsPath = path.join(__dirname,'../templates/views')
 const partialsPath = path.join(__dirname,'../templates/partials')
@@ -79,6 +81,6 @@ app.get('*',(req,res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log("Listening to you breathe")
+app.listen(port, () => {
+    console.log(`Listening to you breathe on port ${port}`)
 }) 

@@ -12,7 +12,7 @@ const error = document.querySelector('#error')
 weatherForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const location = searchTerm.value
-    fetch(`http://localhost:3000/weather?address=${location}`).then((res) => {
+    fetch(`/weather?address=${location}`).then((res) => {
         res.json().then((data) => {
             if (data.error) {
                 error.textContent = data.error
